@@ -7,6 +7,8 @@ router.post('/', withAuth, async (req, res) => {
 
   try {
     const newPost = await Post.create({
+      ...req.body,
+      id: req.session.id
       // TODO: POST BODY SENT IN REQUEST. HINT USING SPREAD 
 
       // TODO: SET USERID userId TO LOGGEDIN USERID
@@ -21,6 +23,7 @@ router.post('/', withAuth, async (req, res) => {
 router.put('/:id', withAuth, async (req, res) => {
   try {
     const [affectedRows] = await Post.update(req.body, {
+      
       // TODO: SET ID TO ID PARAMETER INSIDE WHERE CLAUSE CONDITION FIELD
 
     });

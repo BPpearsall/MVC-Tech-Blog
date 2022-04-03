@@ -19,7 +19,12 @@ router.get('/', async (req, res) => {
 // get single post
 router.get('/post/:id', async (req, res) => {
   try {
-    const postData = await Post.findByPk(
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {model: User},
+        {model: Comment}
+      ]
+    }
       // HINTS:
       //  FIRST ARGUMENT IS PRIMARY KEY 'I'D PASSED IN THE END POINT
       //  SECOND ARGUMENT IS AN OBJECT IN WHICH YOU USE PROPERTY 'INCLUDE' TO INCLUDE USER
