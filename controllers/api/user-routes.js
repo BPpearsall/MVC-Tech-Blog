@@ -41,14 +41,9 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.id = user.id;
+      req.session.user_id = user.id;
       req.session.logged_in = true;
-      // TODO: SET USERID userId IN REQUEST SESSION TO ID RETURNED FROM DATABASE
-
-      // TODO: SET USERNAME username IN REQUEST SESSION TO USERNAME RETURNED FROM DATABASE
-
-      // TODO: SET LOGGEDIN loggedIn TO TRUE IN REQUEST SESSION
-
+      req.session.username = user.username;
       res.json({ user, message: 'You are now logged in!' });
     });
   } catch (err) {
